@@ -27,8 +27,21 @@ class EmployeeController extends Controller
 		]);
 	}
 	
-	public function get()
+	public function get(Request $request)
 	{
+		$data = DB::select(
+			sprintf('SELECT SQL_CALC_FOUND_ROWS * FROM %s WHERE 1 %s LIMIT %d, %d', 
+				'employees', 
+				isset($request['fname']) ? $request['fname'] : '', 
+				$request['start'], $request['limit']
+			)
+		);
+		print_r($data);
+		/* $total = DB::select(DB::raw('select found_rows() as total'))[0]->total;
 		
+		return response()->json([
+			'data' => $data,
+			'total' => $total
+		]); */
 	}
 }

@@ -17,3 +17,4 @@ Route::get('/', function () {
 
 Route::get('employee/all', 'EmployeeController@get');
 Route::post('employee/create', 'EmployeeController@create');
+Route::post('employee/search', 'EmployeeController@get');
